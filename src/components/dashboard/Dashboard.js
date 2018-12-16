@@ -27,7 +27,7 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
-  // console.log(state);
+  console.log(state.firestore.projects);
   return {
     projects: state.firestore.ordered.projects
   }

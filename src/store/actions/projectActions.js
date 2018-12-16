@@ -9,9 +9,9 @@ export const createProject=(project)=>{
 		//aync, promise 
 		firestore.collection('projects').add({
       ...project,
-      authorFirstName: 'Net',
-      authorLastName: 'Ninja',
-      authorId: 12345,
+      authorFirstName: 'pin',
+      authorLastName: 'lin',
+      authorId: 1234,
       createdAt: new Date()
     }).then(() => {
       dispatch({ type: 'CREATE_PROJECT_SUCCESS' });

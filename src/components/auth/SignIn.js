@@ -1,6 +1,8 @@
 //we want to store the local state what the user type into the form.
 //so its a class based component
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
+import {signIn} from '../../store/actions/authActions'
 
 class SignIn extends Component {
   state = {
@@ -15,9 +17,10 @@ class SignIn extends Component {
   handleSubmit = (e) => {
     e.preventDefault(); 
     //prevent default action of form being submited and form being refresh when user click on the botton
-    console.log(this.state);
+    this.props.signIn(this.state) //this state=creditial
   }
   render() {
+    const { authError } = this.props;
     return (
       <div className="container">
         <form className="white" onSubmit={this.handleSubmit}>
@@ -32,6 +35,9 @@ class SignIn extends Component {
           </div>
           <div className="input-field">
             <button className="btn pink lighten-1 z-depth-0">Login</button>
+            <div className="center red-text">
+              { authError ? <p>{authError}</p> : null }
+            </div>
           </div>
         </form>
       </div>
@@ -39,4 +45,18 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn
+const mapStateToProps=(state)=>{
+  return {
+    authError: state.auth.authError
+  }
+}
+
+const mapDispatchToProps=(dispatch)=>{
+  return {
+    signIn: (creds)=>dispatch(signIn(creds))
+  }
+}
+
+
+
+export default connect(null, mapDispatchToProps)(SignIn)

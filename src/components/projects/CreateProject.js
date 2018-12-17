@@ -52,7 +52,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps=(dispatch)=>{
   return {
-    //object we want to add to the props
+    
     createProject: (project)=>dispatch(createProject(project))
   }
 }
